@@ -1,74 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table layout</title>
-    <style type="text/css">
-        .header {
-            background: #717d91;
-            color: #fff;
-            height: 5em;
-        }
-        
-        .outer-wrapper {
-            display: table;
-            margin: 0 auto 0;
-            max-width: 80em;
-            text-align: center;
-        }
-        
-        .inner-wrapper{
-            display: table;
-        }
-        
-        .sidebar, .left, .right {
-            display: table-cell;
-        }
-        
-        .sidebar {
-            background: #b4d4e4;
-            width: 20%;
-        }
-        
-        .left {
-            width: 50%;
-            background-color: rgb(224, 192, 150);
-        }
-        
-        .right{
-            width: 50%;
-            background-color:rgb(182, 178, 178);
-        }
-        
-        p {
-            padding: 1em;
-            text-align: left;
-        }
-    </style>
+  <meta charset="utf-8">
+  <title>Number guessing game</title>
+  <style>
+    html {
+      font-family: sans-serif;
+    }
+    body {
+      
+      max-width: 1000px;
+      min-width: 480px;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 1.4em;
+      font-size: 1.2em; 
+      background-color: #c4c4c4;
+    }
+    h1 {
+      margin: 40px 0 80px 0;
+      text-transform: uppercase;
+      font-family: verdana;
+      font-size: 3.5em;
+      font-weight: 700;
+      color: #f5f5f5;
+      text-shadow: 1px 1px 1px #919191,
+      1px 2px 1px #919191,
+      1px 3px 1px #919191,
+      1px 4px 1px #919191,
+      1px 5px 1px #919191,
+      1px 6px 1px #919191,
+      1px 7px 1px #919191,
+      1px 8px 1px #919191,
+      1px 9px 1px #919191,
+      1px 10px 1px #919191,
+      1px 18px 6px rgba(16,16,16,0.4),
+      1px 22px 10px rgba(16,16,16,0.2),
+      1px 25px 35px rgba(16,16,16,0.2),
+      1px 30px 60px rgba(16,16,16,0.4);
+    }
     
+    input[type="range"] {
+      vertical-align: bottom;
+    }
+    em {color: #0b074c; }
+    
+    .lastResult {
+      padding: 8px;
+      font-weight: bolder;
+      color: #f6f5f1;
+      -webkit-text-stroke: 1px black;
+      font-size: 1.5em;
+      border-radius: 20px;
+    }
+    .info, .lowOrHi {
+      background-color: cornflowerblue;
+      color:#000;
+      padding: 2px;
+      border-radius: 20px;
+      border: 2px ridge #fff;
+    }
+    .red {background-color: red; border: 6px dotted #c5b495;}
+    .light-red {background-color: rgb(224 79 79);}
+    .green{background-color:green;}
+    .light-green{background-color:rgb(28, 160, 28);}
+    .p-guess {
+      display: inline-block;
+      min-width: 1.4em;
+      background-color: #080808;
+      border-radius: 100px;
+      padding: 7px;
+      margin: 0 2px;
+      border: 2px ridge #fbfaf7;
+      color: #fff;
+    }
+    .win {
+      display: inline-block;
+      min-width: 1.4em;
+      background-color: #efd75f;
+      color: #000;
+      border-radius: 100px;
+      padding: 5px;
+      border: 6px double #333;
+    }
+  </style>
 </head>
 <body>
-    <div class="outer-wrapper">
-        <div class="sidebar">
-            SIDEBAR
-        </div>
-        <div class="inner-wrapper">
-            <div class="header">
-                HEADER
-            </div>
-            <div class="content">
-                <div class="left">
-                    <p><strong>Try removing the content.</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. In impedit ducimus quod iste expedita, numquam deserunt ex ad hic libero voluptates laudantium? Aperiam cum eius deserunt nostrum maiores consequuntur ullam, quasi a laudantium fugit accusamus id ex quidem impedit natus nihil voluptatem veniam placeat debitis cumque quisquam eligendi dicta aspernatur. At, mollitia aut? Voluptas quo minima odit laudantium? Culpa expedita ab repellendus quibusdam unde in iusto, accusantium libero similique cum quos! Fugit quas voluptatibus ipsum aliquid minus cupiditate facilis eveniet minima eius tempora voluptate, repellat rerum totam quae sed perspiciatis nesciunt vel sint, consequatur temporibus. Dicta accusantium repellendus magnam eius harum ducimus voluptas cum, eum incidunt sit consectetur adipisci perferendis repudiandae cupiditate natus quis sed voluptatum reprehenderit eligendi! Ea laudantium natus aut placeat molestias! Unde voluptatem aliquam quam eum iusto culpa, magnam suscipit libero, ullam error enim fuga itaque reprehenderit vero molestiae doloremque neque in exercitationem at ratione! Eos, molestias?</p> 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure blanditiis reiciendis praesentium explicabo voluptatem nam sint omnis, asperiores, tempore optio voluptates totam ducimus provident. Magni, fugiat vel. Facere natus dolorem blanditiis eaque vero, enim, quibusdam temporibus deserunt aliquam autem consequuntur. Ex modi doloremque rem consequatur quam? Fugiat, esse a! Facere similique asperiores, nisi cum nulla aut id voluptatem sequi delectus error doloremque, itaque tempora. Voluptate delectus id officiis beatae, voluptatibus impedit distinctio temporibus fugit vel molestias. Officiis earum ut voluptate, facilis nisi molestias enim quaerat quia maxime, a fuga labore sunt laboriosam! Optio quis necessitatibus est cupiditate quas illo architecto fuga veritatis, numquam inventore repudiandae ut quaerat a debitis quisquam magni labore esse? Aut nulla nesciunt facilis hic quasi quos consequatur laborum corrupti perferendis atque, officiis impedit ratione omnis amet soluta sapiente ipsum. Corporis suscipit dignissimos, dolore sequi enim aliquam ex, tenetur incidunt magnam totam iste officia labore nisi culpa.</p> 
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur, consectetur perspiciatis quis iure soluta quae. Praesentium beatae vero incidunt laudantium repellat maxime sunt delectus fuga! Vel reiciendis fuga saepe, veritatis provident quis? Magni provident nostrum qui omnis enim aut, excepturi veniam minus fuga error ipsam deleniti temporibus dolor totam incidunt mollitia voluptatibus, magnam aliquid at, veritatis dolorem reiciendis id. Velit repellat pariatur assumenda magni, necessitatibus ratione molestiae voluptatibus omnis modi labore est non esse facere eaque eveniet, hic illum dolor. Exercitationem itaque totam illo voluptatem quo saepe incidunt vitae architecto optio ipsa numquam, maxime quam ipsam sapiente et, magni ut provident est in amet temporibus praesentium. Quaerat quo hic cumque? Velit quae nihil earum ab, harum quo consequuntur voluptatibus sed, explicabo odio ex veritatis itaque maiores saepe esse incidunt mollitia cupiditate distinctio corporis provident! Error labore, assumenda nihil placeat eaque dolorem autem quod ullam eligendi facere ea illo laboriosam dicta?</p> 
-                </div>
-                <div class="right">
-                    <p>Cras sollicitudin dui nec dolor. Pellentesque semper est nec elit. Vivamus ac arcu. Nam fringilla risus id tortor. Aliquam nec nibh. Aenean at urna ac ante consectetuer pulvinar. Mauris vehicula, augue vitae imperdiet sodales, felis ipsum hendrerit est, ut adipiscing nibh urna vel nisi. Suspendisse a felis at lacus sagittis consectetuer. Aliquam sagittis turpis non mauris. Praesent purus nisi, tempor accumsan, lacinia et, eleifend sollicitudin, felis. Duis id tellus convallis libero tincidunt ornare. Sed eget mi sit amet tellus pellentesque pharetra. In hac habitasse platea dictumst. Donec vel velit quis nunc adipiscing tincidunt. Proin quis turpis et erat consectetuer varius. Sed mi turpis, placerat ut, consectetuer in, pharetra nec, lorem. Donec lacus sapien, faucibus et, feugiat eget, sodales non, odio. Ut fermentum tortor. Cras ligula. Aliquam nec libero a nisl euismod auctor.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+  <h1>Number Guessing Game</h1>
+  <div class="form">
+    <input type="range" class="two-way" id="guessRange" name="guessRange" min="0" max="100" oninput="twoWay(event)">
+    <input type="number" value = "50" class="two-way" id="guessNum" name="guessNum" min="1" max="100" oninput="twoWay(event)">
+    <input type="submit" value="Submit guess" class="guessSubmit">
+  </div>
+  <div class="resultParas">
+    <p class="guesses"></p>
+    <p class="lastResult"></p>
+    <p class="lowOrHi"></p>
+  </div>
+  <p class="info">Guess between 1 and 100 in 10 turns or less!</p>
 </body>
+<script>
+ let resetButton,gameCount=0,losses=0,randomNumber=Math.floor(100*Math.random())+1,guessCount=1;const guesses=document.querySelector(".guesses"),guessRange=document.querySelector("#guessRange"),guessNum=document.querySelector("#guessNum"),lastResult=document.querySelector(".lastResult"),lowOrHi=document.querySelector(".lowOrHi"),guessSubmit=document.querySelector(".guessSubmit"),resetParas=document.querySelectorAll(".resultParas p"),win=document.querySelector(".win"),info=document.querySelector(".info"),twoWay=()=>{const e=document.getElementsByClassName(event.currentTarget.className);for(let s in e)e[s].value=event.currentTarget.value};function checkGuess(){info.textContent="",lastResult.textContent="You know the deal, enter a number...";let e=Number(guessRange.value);1===guessCount&&(guesses.textContent="Previous guesses: "),-1===Math.sign(randomNumber-e)?guesses.innerHTML+=`<span class="p-guess">&larr;${e}</span>`:guesses.innerHTML+=`<span class="p-guess">${e}&rarr;</span>`,e===randomNumber?(1===guessCount?(lastResult.textContent="Congratulations, you got it right on the first try!",guesses.innerHTML=`Winning guess: <span class="win">${randomNumber}</span>`,lastResult.classList.toggle("green"),lowOrHi.textContent=""):guessCount<5?(lastResult.textContent=`Very good, you only used ${guessCount} guesses!`,guesses.innerHTML=`Winning guess: <span class="win">${randomNumber}</span>`,lastResult.classList.toggle("light-green"),lowOrHi.textContent=""):guessCount<9?(lastResult.textContent=`Not too shabby, you got it in ${guessCount} guesses.`,guesses.innerHTML=`Winning guess: <span class="win">${randomNumber}</span>`,lastResult.classList.toggle("light-red"),lowOrHi.textContent=""):lastResult.textContent=`It took you ${guessCount} guesses?!  "Hmmm...."`,guesses.innerHTML=`Winning guess: <span class="win">${randomNumber}</span>`,lowOrHi.textContent="",setGameOver()):10===guessCount?(lastResult.textContent="!!! GAME OVER !!!",losses++,lowOrHi.textContent="",setGameOver()):(lastResult.textContent="Wrong!",lastResult.classList.toggle("red","Wrong!"===lastResult.textContent),e<randomNumber?lowOrHi.innerHTML=`<em>Your guess was too low! Guesses left: ${10-guessCount}</em>`:e>randomNumber&&(lowOrHi.innerHTML=`<em>Your guess was too high! Guesses left ${10-guessCount}</em>`)),guessCount++}function setGameOver(){gameCount++,console.log(gameCount),info.textContent=`Games played: ${gameCount} • Wins: ${gameCount-losses} • Losses: ${losses}`,guessSubmit.disabled=!0,guessRange.disabled=!0,guessNum.disabled=!0,guessRange.value=50,(resetButton=document.createElement("button")).textContent="Start new game",document.body.appendChild(resetButton),resetButton.addEventListener("click",resetGame)}function resetGame(){guessCount=1;for(let e of resetParas)e.textContent="";resetButton.parentNode.removeChild(resetButton),guessSubmit.disabled=!1,guessRange.disabled=!1,guessNum.disabled=!1,lastResult.className="lastResult",info.textContent="You know the deal, enter a number...",guessRange.value=50,randomNumber=Math.floor(100*Math.random())+1}guessSubmit.addEventListener("click",checkGuess);
+</script>
 </html>
+
