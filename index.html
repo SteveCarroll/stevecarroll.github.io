@@ -15,30 +15,68 @@ body {
 h1 {
     text-align: center;
 }
-ul {
-    list-style-type: none;
-    padding-left: 0;
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 2em;
 }
-li {
-    margin-bottom: 0.5em;
+input[type="number"] {
+    width: 60px;
+    font-size: 1em;
+    text-align: center;
 }
-a {
-    text-decoration: none;
-    color: #1a0dab;
-}
-a:hover {
-    text-decoration: underline;
+button {
+    font-size: 1em;
+    padding: 0.3em 0.6em;
 }
 </style>
 </head>
 <body>
 <h1>Usenet Posts Archive</h1>
-<p>Browse the posts:</p>
-<ul>
-<li><a href="post_01.html">Post 001</a></li>
-<li><a href="post_02.html">Post 002</a></li>
-<li><a href="post_03.html">Post 003</a></li>
-</ul>
+
+<div class="controls">
+    <button onclick="prevPost()">Previous</button>
+    <label for="postNumber">Post #:</label>
+    <input type="number" id="postNumber" min="1" max="1287" value="1">
+    <button onclick="goToPost()">Go</button>
+    <button onclick="nextPost()">Next</button>
+</div>
+
+<script>
+let currentPost = 1;
+const totalPosts = 1287; // adjust if needed
+
+function pad(num) {
+    return String(num).padStart(3, '0');
+}
+
+function goToPost() {
+    const input = document.getElementById('postNumber');
+    let num = parseInt(input.value, 10);
+    if (isNaN(num) || num < 1) num = 1;
+    if (num > totalPosts) num = totalPosts;
+    currentPost = num;
+    window.location.href = `post_${pad(currentPost)}.html`;
+}
+
+function prevPost() {
+    if (currentPost > 1) {
+        currentPost--;
+        document.getElementById('postNumber').value = currentPost;
+        goToPost();
+    }
+}
+
+function nextPost() {
+    if (currentPost < totalPosts) {
+        currentPost++;
+        document.getElementById('postNumber').value = currentPost;
+        goToPost();
+    }
+}
+</script>
+
 </body>
 </html>
-
