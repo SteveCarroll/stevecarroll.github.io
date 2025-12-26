@@ -1,5 +1,5 @@
 /* Make author and topic dropdowns side by side */
-/* .dropdowns {
+ .dropdowns {
   display: flex;
   gap: 1rem;
 }
@@ -9,12 +9,6 @@
   padding: 0.8rem;
   font-size: 1rem;
   margin-bottom: 1rem;
-} */
+  width: 50%;
+} 
  
-#author-select, #topic-select {
-    flex: 1;
-    padding: 0.8rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    width: 50%;
-}
