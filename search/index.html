@@ -128,30 +128,9 @@
 </div>
 
 
-<script id="search-data" type="application/json"> 
-{{ define "main" }}
-<div class="search-container">
-  <input type="text" id="search-input" placeholder="Search for a word or phrase..." autofocus>
-
-  <div class="dropdowns">
-    <select id="author-select">
-      <option value="">-- Select Author --</option>
-    </select>
-
-    <select id="topic-select">
-      <option value="">-- Select Topic --</option>
-    </select>
-  </div>
-
-  <div id="search-results"></div>
-</div>
-
-<!-- Embed your JSON search data here -->
-
 <script id="search-data" type="application/json">
 
-</script>
-[
+  [
   {
     "content": "Today&rsquo;s CQ:\nHLQLQVLH QL, BZMTUZ G ZRPL BM ARW UMMCVWL. HLQLQVLH QL, CMF&rsquo;B KLB GB QROL WMT YHW. ZLYBMH, &ldquo;YMYM&rdquo;\n. . . . . . . . . . . . . . . . . . . . .\nRemember me, though I have to say goodbye. Remember me, don&rsquo;t let it make you cry. Hector, &ldquo;Coco&rdquo;\nSolving: don&rsquo;t, to, let it, remember me,\nCoco is a Disney/Pixar animated; Hector is a great-great-grandfather in the Land of the Dead; Coco a young girl; Remember Me a lullaby sung to her.\nThere is a fair amount of interest in its wp story: https://en.wikipedia.org/wiki/Coco_(2017_film)\nBut, I think the &lsquo;story&rsquo; of the Mexican celebration of &ldquo;Dia de los Muertos&rdquo; is even more interesting than the Coco story. The part of the Coco story which describes the &lsquo;artistry&rsquo; of how the Disney developers chose to illustrate the Dead aspect is pretty interesting.\nhttps://en.wikipedia.org/wiki/Day_of_the_Dead\n&ndash; Mike Easter\n",
     "date": "2025-11-01T00:00:00Z",
@@ -11151,118 +11130,6 @@
     "url": "/posts/2021-06-19-re-puzzle-corner/"
   }
 ]
-
-<script>
-let searchIndex = JSON.parse(document.getElementById('search-data').textContent);
-
-// --- Extract unique authors ---
-function extractAuthors(posts) {
-  const authors = new Set();
-  posts.forEach(post => { if (post.author) authors.add(post.author); });
-  return Array.from(authors).sort();
-}
-
-// --- Extract unique topics ---
-function extractTopics(posts) {
-  const topics = new Set();
-  posts.forEach(post => { if (post.topic) topics.add(post.topic); });
-  return Array.from(topics).sort();
-}
-
-// --- Populate dropdowns ---
-function populateDropdown(id, items) {
-  const select = document.getElementById(id);
-  items.forEach(item => {
-    const option = document.createElement('option');
-    option.value = item;
-    option.textContent = item;
-    select.appendChild(option);
-  });
-}
-
-populateDropdown('author-select', extractAuthors(searchIndex));
-populateDropdown('topic-select', extractTopics(searchIndex));
-
-// --- Central filter function ---
-function filterResults() {
-  const query = document.getElementById('search-input').value.trim().toLowerCase();
-  const selectedAuthor = document.getElementById('author-select').value.toLowerCase();
-  const selectedTopic = document.getElementById('topic-select').value.toLowerCase();
-  const resultsDiv = document.getElementById('search-results');
-
-  const results = searchIndex.filter(item => {
-    const contentText = item.content ? item.content.toLowerCase() : "";
-    const authorText = item.author ? item.author.toLowerCase() : "";
-    const topicText = item.topic ? item.topic.toLowerCase() : "";
-
-    const matchesContent = query ? contentText.includes(query) : true;
-    const matchesAuthor = selectedAuthor ? authorText === selectedAuthor : true;
-    const matchesTopic = selectedTopic ? topicText === selectedTopic : true;
-
-    return matchesContent && matchesAuthor && matchesTopic;
-  }).slice(0, 20);
-
-  resultsDiv.innerHTML = results.length ? results.map(item => `
-    <div class="search-result">
-      <h3><a href="${item.url}">${item.title}</a></h3>
-      <p class="date">${item.date ? new Date(item.date).toLocaleDateString() : ''}</p>
-      <p>${item.content ? item.content.substring(0, 500) + '...' : ''}</p>
-    </div>
-  `).join('') : '<p>No results found.</p>';
-}
-
-// --- Event listeners ---
-document.getElementById('search-input').addEventListener('input', filterResults);
-document.getElementById('author-select').addEventListener('change', filterResults);
-document.getElementById('topic-select').addEventListener('change', filterResults);
-</script>
-
-<style>
-.search-container {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-/* Flex dropdowns side by side */
-.dropdowns {
-  display: flex;
-  gap: 1rem;
-}
-
-#author-select, #topic-select {
-  flex: 1;
-  padding: 0.8rem;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-
-#search-input {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1.2rem;
-  border: 2px solid #ddd;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-}
-
-.search-result {
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid #eee;
-}
-
-.search-result h3 {
-  margin: 0 0 0.5rem 0;
-}
-
-.search-result .date {
-  color: #666;
-  font-size: 0.9rem;
-  margin: 0.5rem 0;
-}
-</style>
-{{ end }}
 
 </script>
 
